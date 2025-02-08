@@ -2,7 +2,7 @@
 
 namespace Tamagotchi_Pokemon.Pokemons;
 
-internal class TypeInfo
+internal class Types
 {
     [JsonPropertyName("slot")]
     public int? Slot { get; set; }
