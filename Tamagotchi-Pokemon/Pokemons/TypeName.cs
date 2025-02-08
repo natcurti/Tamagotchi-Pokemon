@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using Tamagotchi_Pokemon.Utils;
 
 namespace Tamagotchi_Pokemon.Pokemons;
 
@@ -13,10 +14,7 @@ internal class TypeName
         {   
             if(Name != null)
             {
-                string firstLetter = Name.Substring(0, 1).ToUpper();
-                string restOfName = Name.Substring(1);
-
-                return $"{firstLetter}{restOfName}";
+                return CapitalizeFirstLetter.CapitalizeString(Name);
             } else
             {
                 return null;
