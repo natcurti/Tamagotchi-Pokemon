@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using Tamagotchi_Pokemon.Menu;
 using Tamagotchi_Pokemon.Pokemons;
 
 using (HttpClient client = new HttpClient())
@@ -9,8 +10,11 @@ using (HttpClient client = new HttpClient())
 
         var pokemon = JsonSerializer.Deserialize<Pokemon>(json);
 
-        pokemon!.ShowPokemonDetails();
+        //pokemon!.ShowPokemonDetails();
 
-    }    
+    }
 
 }
+
+UserInteraction menu = new UserInteraction();
+menu.WelcomeUser();
