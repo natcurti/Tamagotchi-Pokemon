@@ -5,16 +5,23 @@ namespace Tamagotchi_Pokemon.Menu;
 internal class UserInteraction
 {   
     private readonly Dictionary<int, MenuBase> menuOptions;
-    private readonly DisplayPokemons displayPokemons;
+    private readonly ListPokemons pokemonsList;
     private readonly FetchPokemons fetchPokemons;
+    private readonly AdoptPokemon adoptPokemon;
+    private readonly EndMenu endApp;
 
     public UserInteraction()
     {
-        displayPokemons = new DisplayPokemons();
-        fetchPokemons = new FetchPokemons(displayPokemons);
+        pokemonsList = new ListPokemons();
+        fetchPokemons = new FetchPokemons(pokemonsList);
+        adoptPokemon = new AdoptPokemon(pokemonsList);
+        endApp = new EndMenu();
         menuOptions = new Dictionary<int, MenuBase> 
         {
-            {1, displayPokemons}
+            {1, pokemonsList},
+            {2, adoptPokemon},
+            {3, adoptPokemon},
+            {5, endApp}
         };
     }
     public string? NameUser { get; set; }
@@ -41,7 +48,8 @@ internal class UserInteraction
 
     public void ShowMenu()
     {
-        Console.WriteLine($"Bem-vindo(a), {NameUser}");
+        Console.Clear();
+        Console.WriteLine($"Olá, {NameUser} !");
         Console.WriteLine("\nEscolha entre as opções abaixo:");
 
         string options = $"\n1 - Acessar lista de bichinhos virtuais disponíveis" +
@@ -51,15 +59,40 @@ internal class UserInteraction
             $"\n5 - Sair";
 
         Console.WriteLine(options);
-        int option = int.Parse(Console.ReadLine()!);
-        if (menuOptions.ContainsKey(option))
-        {
-            MenuBase menuToShow = menuOptions[option];
-            menuToShow.Execute();
+        string input = Console.ReadLine()!;
+        int option = 0;
+
+        while (true)
+        {         
+            if(int.TryParse(input, out option))
+            {
+               if (option > 0 && option <= 5)
+               {
+                  MenuBase menuToShow = menuOptions[option];
+                  menuToShow.Execute(option);
+                  ReturnMenu();
+               } 
+               else
+               {
+                  Console.WriteLine("Opção inválida. Digite um número inteiro entre 1 e 5.");
+                  input = Console.ReadLine()!;
+               }
+
+            } else
+            {
+                Console.WriteLine("Entrada inválida. Digite um número inteiro.");
+                input = Console.ReadLine()!;
+            }
+
         }
-        else
-        {
-            Console.WriteLine("Opção inválida");
-        }
+
+    }
+
+    public void ReturnMenu()
+    {   
+        Console.WriteLine("Digite qualquer tecla para retornar ao menu");
+        Console.ReadKey();
+        Console.Clear();
+        ShowMenu();
     }
 }

@@ -11,5 +11,5 @@ internal class MenuBase
         Console.WriteLine(asterisks);
     }
 
-    public virtual void Execute(){}
+    public virtual void Execute(int? option = null){}
 }

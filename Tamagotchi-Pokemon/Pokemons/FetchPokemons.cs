@@ -4,9 +4,9 @@ using Tamagotchi_Pokemon.Menu;
 namespace Tamagotchi_Pokemon.Pokemons;
 internal class FetchPokemons
 {
-    private readonly DisplayPokemons pokemons;
+    private readonly ListPokemons pokemons;
 
-    public FetchPokemons(DisplayPokemons listPokemons)
+    public FetchPokemons(ListPokemons listPokemons)
     {
         pokemons = listPokemons;
     }
