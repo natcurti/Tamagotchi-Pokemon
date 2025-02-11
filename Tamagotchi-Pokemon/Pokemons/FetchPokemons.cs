@@ -4,10 +4,15 @@ using Tamagotchi_Pokemon.Menu;
 namespace Tamagotchi_Pokemon.Pokemons;
 internal class FetchPokemons
 {
+    private readonly DisplayPokemons pokemons;
+
+    public FetchPokemons(DisplayPokemons listPokemons)
+    {
+        pokemons = listPokemons;
+    }
+
     public async Task GetPokemonsFromAPI()
     {   
-        ListPokemons pokemons = new ListPokemons();
-
         using (HttpClient client = new HttpClient())
         {
             try

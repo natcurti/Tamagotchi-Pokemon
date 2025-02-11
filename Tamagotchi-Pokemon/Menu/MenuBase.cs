@@ -10,4 +10,6 @@ internal class MenuBase
         Console.WriteLine(title.ToUpper());
         Console.WriteLine(asterisks);
     }
+
+    public virtual void Execute(){}
 }

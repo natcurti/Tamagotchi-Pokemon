@@ -1,8 +1,28 @@
-﻿namespace Tamagotchi_Pokemon.Menu;
+﻿using Tamagotchi_Pokemon.Pokemons;
+
+namespace Tamagotchi_Pokemon.Menu;
 
 internal class UserInteraction
 {   
-    public string? NameUser {  get; set; }
+    private readonly Dictionary<int, MenuBase> menuOptions;
+    private readonly DisplayPokemons displayPokemons;
+    private readonly FetchPokemons fetchPokemons;
+
+    public UserInteraction()
+    {
+        displayPokemons = new DisplayPokemons();
+        fetchPokemons = new FetchPokemons(displayPokemons);
+        menuOptions = new Dictionary<int, MenuBase> 
+        {
+            {1, displayPokemons}
+        };
+    }
+    public string? NameUser { get; set; }
+
+    public async Task FecthPokemonsFromAPI()
+    {
+        await fetchPokemons.GetPokemonsFromAPI();
+    }
     public void WelcomeUser()
     {
         Console.WriteLine("Bem-vindo(a) ao Mundo dos Bichinhos Virtuais!");
@@ -31,5 +51,15 @@ internal class UserInteraction
             $"\n5 - Sair";
 
         Console.WriteLine(options);
+        int option = int.Parse(Console.ReadLine()!);
+        if (menuOptions.ContainsKey(option))
+        {
+            MenuBase menuToShow = menuOptions[option];
+            menuToShow.Execute();
+        }
+        else
+        {
+            Console.WriteLine("Opção inválida");
+        }
     }
 }
