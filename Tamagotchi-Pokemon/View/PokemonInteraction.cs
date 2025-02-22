@@ -30,7 +30,48 @@ internal class PokemonInteraction : MenuBase
 
     public void ShowMenuToInteractWithPokemon()
     {
-        Console.WriteLine("IMPLEMENTAR MENU DE INTERAÇÃO. ");
+        bool back = false;
+
+        while (!back)
+        {
+            Console.WriteLine("Você gostaria de: ");
+            Console.WriteLine($"1 - Saber como {this.pokemonToInteract.CapitalizedName} está");
+            Console.WriteLine($"2 - Alimentar {this.pokemonToInteract.CapitalizedName}");
+            Console.WriteLine($"3 - Brincar com {this.pokemonToInteract.CapitalizedName}");
+            Console.WriteLine($"4 - Colocar {this.pokemonToInteract.CapitalizedName} para dormir");
+            Console.WriteLine($"5 - Sair");
+
+            if (int.TryParse(Console.ReadLine(), out int option))
+            {
+                switch (option)
+                {
+                    case 1:
+                        pokemonToInteract.ShowStatus();
+                        break;
+                    case 2:
+                        pokemonToInteract.FeedPokemon();
+                        break;
+                    case 3:
+                        pokemonToInteract.PlayWithPokemon();
+                        break;
+                    case 4:
+                        pokemonToInteract.BoostEnergy();
+                        break;
+                    case 5:
+                        back = true;
+                        break;
+                    default:
+                        Console.WriteLine("Opção inválida.");
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Entrada inválida, digite um número de 1 a 5.");
+            }          
+
+        }
+        
     }
 
 

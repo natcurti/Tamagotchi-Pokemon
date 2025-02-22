@@ -2,7 +2,6 @@
 using Tamagotchi_Pokemon.Utils;
 
 namespace Tamagotchi_Pokemon.Model;
-
 internal class Pokemon
 {
     [JsonPropertyName("name")]
@@ -60,6 +59,80 @@ internal class Pokemon
             Console.WriteLine($"{stat.Stat!.CapitalizedName}: {stat.StatValue}");
         }
 
+    }
+
+    public void ShowStatus()
+    {
+        Console.WriteLine("\n***************************");
+        switch (hunger)
+        {
+            case < 8 and >= 5:
+                Console.WriteLine($"{this.CapitalizedName} está com fome!");
+                break;
+            case < 5:
+                Console.WriteLine($"{this.CapitalizedName} está alimentado.");
+                break;
+            case >= 8:
+                Console.WriteLine($"{this.CapitalizedName} está faminto! Alimente-o imediatamente.");
+                break;
+        }
+
+        switch (mood)
+        {
+            case < 6 and > 3:
+                Console.WriteLine($"{this.CapitalizedName} está meio entediado. Brinque com ele.");
+                break;
+            case <= 3:
+                Console.WriteLine($"{this.CapitalizedName} está muito triste. Você o abandonou.");
+                break;
+            case >= 6:
+                Console.WriteLine($"{this.CapitalizedName} está feliz!");
+                break;
+        }
+
+        switch (energy)
+        {
+            case < 6 and > 3:
+                Console.WriteLine($"{this.CapitalizedName} está ficando com sono.");
+                break;
+            case <= 3:
+                Console.WriteLine($"{this.CapitalizedName} está quase desmaiando de sono. Precisa dormir imediatamente.");
+                break;
+            case >= 6:
+                Console.WriteLine($"{this.CapitalizedName} está descansado e cheio de energia!");
+                break;
+        }
+        Thread.Sleep(1000);
+        Console.WriteLine("***************************\n");
+    }
+
+    public void FeedPokemon()
+    {
+        hunger = 0;
+        Console.WriteLine("\nAlimentando pokemon ...");
+        Thread.Sleep(1000);
+        Console.WriteLine($"{this.CapitalizedName} está alimentado! :-)\n");
+        Thread.Sleep(1000);
+    }
+
+    public void PlayWithPokemon()
+    {
+        mood = 10;
+        hunger = 5;
+        Console.WriteLine($"\n{this.CapitalizedName} está feliz por você ter brincado com ele! :-)\n");
+        Thread.Sleep(1000);
+        Console.WriteLine("Mas agora ele está com fome.\n");
+        Thread.Sleep(1000);
+    }
+
+    public void BoostEnergy()
+    {
+        energy = 10;
+        mood = 5;
+        Console.WriteLine($"\nColocando {this.CapitalizedName} para dormir.\n");
+        Thread.Sleep(1000);
+        Console.WriteLine($"Volte mais tarde para brincar com ele.\n");
+        Thread.Sleep(1000);
     }
 
 }
