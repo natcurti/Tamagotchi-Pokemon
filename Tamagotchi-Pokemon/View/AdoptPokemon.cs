@@ -4,13 +4,13 @@ using Tamagotchi_Pokemon.Utils;
 namespace Tamagotchi_Pokemon.View;
 internal class AdoptPokemon : MenuBase
 {
-    public List<Pokemon> adoptedPokemons { get; }
+    public List<PokemonDto> adoptedPokemons { get; }
 
     private readonly ListPokemons pokemonsAvaliable;
 
     public AdoptPokemon(ListPokemons listPokemons)
     {
-        adoptedPokemons = new List<Pokemon>();
+        adoptedPokemons = new List<PokemonDto>();
         pokemonsAvaliable = listPokemons;
     }
 
@@ -22,7 +22,7 @@ internal class AdoptPokemon : MenuBase
             Console.Write("\nDigite o nome do Pokemon que deseja adotar: ");
             string pokemonName = Console.ReadLine()!;
 
-            Pokemon? pokemonToAdopt = SearchPokemon.GetPokemonFromList(pokemonsAvaliable.pokemons, pokemonName);
+            PokemonDto? pokemonToAdopt = SearchPokemon.GetPokemonFromList(pokemonsAvaliable.pokemons, pokemonName);
         
             if(pokemonToAdopt != null)
             {

@@ -3,9 +3,9 @@
 namespace Tamagotchi_Pokemon.Utils;
 internal class SearchPokemon
 {
-    public static Pokemon? GetPokemonFromList(List<Pokemon> pokemonsList, string name)
+    public static PokemonDto? GetPokemonFromList(List<PokemonDto> pokemonsList, string name)
     {
-        Pokemon? pokemonFound = pokemonsList.Find(pokemon => pokemon.Name!.ToUpper().Equals(name.ToUpper()));
+        PokemonDto? pokemonFound = pokemonsList.Find(pokemon => pokemon.CapitalizedName!.ToUpper().Equals(name.ToUpper()));
 
         return (pokemonFound != null) ? pokemonFound : null;
     }

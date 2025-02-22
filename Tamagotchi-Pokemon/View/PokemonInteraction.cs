@@ -5,7 +5,7 @@ namespace Tamagotchi_Pokemon.View;
 internal class PokemonInteraction : MenuBase
 {
     private AdoptPokemon adoptPokemon;
-    private Pokemon pokemonToInteract = new();
+    private PokemonDto pokemonToInteract = new();
 
     public PokemonInteraction(AdoptPokemon adoptPokemonMenu)
     {
@@ -17,7 +17,7 @@ internal class PokemonInteraction : MenuBase
         Console.Write("Digite o nome do bichinho que deseja cuidar: ");
         string pokemonName = Console.ReadLine()!;
 
-        Pokemon? pokemon = SearchPokemon.GetPokemonFromList(adoptPokemon.adoptedPokemons, pokemonName);
+        PokemonDto? pokemon = SearchPokemon.GetPokemonFromList(adoptPokemon.adoptedPokemons, pokemonName);
         if(pokemon != null)
         {
             pokemonToInteract = pokemon;

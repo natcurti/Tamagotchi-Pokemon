@@ -1,4 +1,5 @@
-﻿using Tamagotchi_Pokemon.Service;
+﻿using AutoMapper;
+using Tamagotchi_Pokemon.Service;
 
 namespace Tamagotchi_Pokemon.View;
 
@@ -11,10 +12,10 @@ internal class UserInteraction
     private readonly PokemonInteraction interactWithPokemon;
     private readonly EndMenu endApp;
 
-    public UserInteraction()
+    public UserInteraction(IMapper mapper)
     {
         pokemonsList = new ListPokemons();
-        fetchPokemons = new FetchPokemons(pokemonsList);
+        fetchPokemons = new FetchPokemons(pokemonsList, mapper);
         adoptPokemon = new AdoptPokemon(pokemonsList);
         interactWithPokemon = new PokemonInteraction(adoptPokemon);
         endApp = new EndMenu();

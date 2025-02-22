@@ -4,11 +4,11 @@ using Tamagotchi_Pokemon.Utils;
 namespace Tamagotchi_Pokemon.View;
 internal class ListPokemons : MenuBase
 {   
-    public List<Pokemon> pokemons { get; }
+    public List<PokemonDto> pokemons { get; }
 
     public ListPokemons()
     {
-        pokemons = new List<Pokemon>();
+        pokemons = new List<PokemonDto>();
     }
 
     public override void Execute(int? option = null)
@@ -17,7 +17,7 @@ internal class ListPokemons : MenuBase
         ShowPokemonsList();
     }
 
-    public void AddPokemon(Pokemon pokemon)
+    public void AddPokemon(PokemonDto pokemon)
     {
         pokemons.Add(pokemon);
     }
@@ -37,7 +37,7 @@ internal class ListPokemons : MenuBase
             case 1:
                 Console.Write("Digite o nome do pokemon que deseja saber os detalhes: ");
                 string pokemonName = Console.ReadLine()!;
-                Pokemon? pokemon = SearchPokemon.GetPokemonFromList(pokemons, pokemonName);
+                PokemonDto? pokemon = SearchPokemon.GetPokemonFromList(pokemons, pokemonName);
                 if(pokemon != null)
                 {
                     pokemon.ShowPokemonDetails();

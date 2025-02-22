@@ -4,6 +4,7 @@ internal class Program
 {
     private static async Task Main(string[] args)
     {
-        await GameController.StartGame();
+        GameController game = new GameController(); 
+        await game.StartGame();
     }
 }

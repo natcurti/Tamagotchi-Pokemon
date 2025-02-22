@@ -1,10 +1,9 @@
-﻿using System.Text.Json.Serialization;
-using Tamagotchi_Pokemon.Utils;
+﻿using Tamagotchi_Pokemon.Utils;
 
 namespace Tamagotchi_Pokemon.Model;
-internal class Pokemon
+
+internal class PokemonDto
 {
-    [JsonPropertyName("name")]
     public string? Name { get; set; }
 
     public string? CapitalizedName
@@ -19,7 +18,6 @@ internal class Pokemon
         }
     }
 
-    [JsonPropertyName("weight")]
     public int? Weight { get; set; }
 
     public double? RealWeight
@@ -30,15 +28,13 @@ internal class Pokemon
         }
     }
 
-    public int hunger = new Random().Next(1, 11);
-    public int mood = new Random().Next(1, 11);
-    public int energy =  new Random().Next(1, 11);
-
-    [JsonPropertyName("types")]
     public List<Types>? TypesList { get; set; }
 
-    [JsonPropertyName("stats")]
     public List<Stats>? StatsList { get; set; }
+
+    private int hunger = new Random().Next(1, 11);
+    private int mood = new Random().Next(1, 11);
+    private int energy = new Random().Next(1, 11);
 
     public void ShowPokemonDetails()
     {
@@ -47,14 +43,14 @@ internal class Pokemon
         Console.WriteLine($"Peso: {this.RealWeight} kg");
         Console.WriteLine();
         Console.WriteLine("Tipos do Pokemon:");
-        foreach(var type in TypesList!)
+        foreach (var type in TypesList!)
         {
             Console.Write($"{type.Slot} - ");
             Console.WriteLine(type.Typename!.CapitalizedName);
         }
         Console.WriteLine();
         Console.WriteLine("Estatísticas:");
-        foreach(var stat in StatsList!)
+        foreach (var stat in StatsList!)
         {
             Console.WriteLine($"{stat.Stat!.CapitalizedName}: {stat.StatValue}");
         }
@@ -134,5 +130,4 @@ internal class Pokemon
         Console.WriteLine($"Volte mais tarde para brincar com ele.\n");
         Thread.Sleep(1000);
     }
-
 }

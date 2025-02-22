@@ -1,14 +1,17 @@
 ﻿using System.Text.Json;
 using Tamagotchi_Pokemon.View;
 using Tamagotchi_Pokemon.Model;
+using AutoMapper;
 
 namespace Tamagotchi_Pokemon.Service;
 internal class FetchPokemons
 {
     private readonly ListPokemons pokemons;
+    private readonly IMapper _mapper;
 
-    public FetchPokemons(ListPokemons listPokemons)
+    public FetchPokemons(ListPokemons listPokemons, IMapper mapper)
     {
+        _mapper = mapper;
         pokemons = listPokemons;
     }
 
@@ -27,14 +30,14 @@ internal class FetchPokemons
                     }
                     else
                     {
-                        Pokemon? pokemon = JsonSerializer.Deserialize<Pokemon>(json);
+                        PokemonFromApi? pokemon = JsonSerializer.Deserialize<PokemonFromApi>(json);
                         if (pokemon == null)
                         {
                             throw new Exception("Erro na desserialização.");
                         }
                         else
                         {
-                            pokemons.AddPokemon(pokemon);
+                            GetPokemonsDTO(pokemon);
                         }
                     }
                 }
@@ -48,5 +51,11 @@ internal class FetchPokemons
                 Console.WriteLine(error.Message);
             }
         }
+    }
+
+    public void GetPokemonsDTO(PokemonFromApi pokemon)
+    {
+        PokemonDto pokemonDto = _mapper.Map<PokemonDto>(pokemon);
+        pokemons.AddPokemon(pokemonDto);
     }
 }
