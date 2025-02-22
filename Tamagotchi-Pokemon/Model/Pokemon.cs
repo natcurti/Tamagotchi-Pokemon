@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using Tamagotchi_Pokemon.Utils;
 
-namespace Tamagotchi_Pokemon.Pokemons;
+namespace Tamagotchi_Pokemon.Model;
 
 internal class Pokemon
 {
@@ -30,6 +30,10 @@ internal class Pokemon
             return (double?)this.Weight / 10;
         }
     }
+
+    public int hunger = new Random().Next(1, 11);
+    public int mood = new Random().Next(1, 11);
+    public int energy =  new Random().Next(1, 11);
 
     [JsonPropertyName("types")]
     public List<Types>? TypesList { get; set; }

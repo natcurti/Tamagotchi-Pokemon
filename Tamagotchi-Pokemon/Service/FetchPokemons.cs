@@ -1,7 +1,8 @@
 ﻿using System.Text.Json;
-using Tamagotchi_Pokemon.Menu;
+using Tamagotchi_Pokemon.View;
+using Tamagotchi_Pokemon.Model;
 
-namespace Tamagotchi_Pokemon.Pokemons;
+namespace Tamagotchi_Pokemon.Service;
 internal class FetchPokemons
 {
     private readonly ListPokemons pokemons;
@@ -12,7 +13,7 @@ internal class FetchPokemons
     }
 
     public async Task GetPokemonsFromAPI()
-    {   
+    {
         using (HttpClient client = new HttpClient())
         {
             try
@@ -23,13 +24,15 @@ internal class FetchPokemons
                     if (string.IsNullOrEmpty(json))
                     {
                         throw new Exception("Json nulo ou vazio");
-                    } else
+                    }
+                    else
                     {
                         Pokemon? pokemon = JsonSerializer.Deserialize<Pokemon>(json);
                         if (pokemon == null)
                         {
                             throw new Exception("Erro na desserialização.");
-                        } else
+                        }
+                        else
                         {
                             pokemons.AddPokemon(pokemon);
                         }

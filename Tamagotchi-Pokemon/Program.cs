@@ -1,5 +1,9 @@
-﻿using Tamagotchi_Pokemon.Menu;
+﻿using Tamagotchi_Pokemon.Controller;
 
-UserInteraction menu = new UserInteraction();
-await menu.FecthPokemonsFromAPI();
-menu.WelcomeUser();
+internal class Program
+{
+    private static async Task Main(string[] args)
+    {
+        await GameController.StartGame();
+    }
+}

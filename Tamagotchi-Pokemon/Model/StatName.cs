@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 using Tamagotchi_Pokemon.Utils;
 
-namespace Tamagotchi_Pokemon.Pokemons;
+namespace Tamagotchi_Pokemon.Model;
 internal class StatName
 {
     [JsonPropertyName("name")]

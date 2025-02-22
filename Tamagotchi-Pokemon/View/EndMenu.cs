@@ -1,4 +1,4 @@
-﻿namespace Tamagotchi_Pokemon.Menu;
+﻿namespace Tamagotchi_Pokemon.View;
 
 internal class EndMenu : MenuBase
 {

@@ -1,4 +1,4 @@
-﻿namespace Tamagotchi_Pokemon.Menu;
+﻿namespace Tamagotchi_Pokemon.View;
 internal class MenuBase
 {
     public void ShowMenuTitle(string title)

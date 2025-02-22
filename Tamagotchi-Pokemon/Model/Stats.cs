@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Tamagotchi_Pokemon.Pokemons;
+namespace Tamagotchi_Pokemon.Model;
 internal class Stats
 {
     [JsonPropertyName("base_stat")]

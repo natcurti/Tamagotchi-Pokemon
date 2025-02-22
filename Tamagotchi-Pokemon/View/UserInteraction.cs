@@ -1,6 +1,6 @@
-﻿using Tamagotchi_Pokemon.Pokemons;
+﻿using Tamagotchi_Pokemon.Service;
 
-namespace Tamagotchi_Pokemon.Menu;
+namespace Tamagotchi_Pokemon.View;
 
 internal class UserInteraction
 {   
@@ -8,6 +8,7 @@ internal class UserInteraction
     private readonly ListPokemons pokemonsList;
     private readonly FetchPokemons fetchPokemons;
     private readonly AdoptPokemon adoptPokemon;
+    private readonly PokemonInteraction interactWithPokemon;
     private readonly EndMenu endApp;
 
     public UserInteraction()
@@ -15,12 +16,14 @@ internal class UserInteraction
         pokemonsList = new ListPokemons();
         fetchPokemons = new FetchPokemons(pokemonsList);
         adoptPokemon = new AdoptPokemon(pokemonsList);
+        interactWithPokemon = new PokemonInteraction(adoptPokemon);
         endApp = new EndMenu();
         menuOptions = new Dictionary<int, MenuBase> 
         {
             {1, pokemonsList},
             {2, adoptPokemon},
             {3, adoptPokemon},
+            {4, interactWithPokemon},
             {5, endApp}
         };
     }
